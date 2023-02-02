@@ -135,15 +135,17 @@ def separate(args, all_configs):
                 selected_attr = modifiable_attr
 
             mode = None
+
             #switch attribute 'Number' for convenience
-            pos = [i for i in xrange(len(selected_attr)) if selected_attr[i][1]=='Number']
+            pos = [i for i in xrange(len(selected_attr)) if selected_attr[i][1] == 'Number']
             if pos:
                 pos = pos[0]
                 selected_attr[pos], selected_attr[-1] = selected_attr[-1], selected_attr[pos] 
 
-                pos = [i for i in xrange(len(selected_attr)) if selected_attr[i][1]=='Position']
+                pos = [i for i in xrange(len(selected_attr)) if selected_attr[i][1] == 'Position']
                 if pos:
                     mode = 'Position-Number'
+
             values = [] 
             if len(selected_attr) >= 3:
                 mode_3 = None

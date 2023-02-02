@@ -29,7 +29,7 @@ def sample_attr_avail(rule_groups, row_3_3):
         rule_groups(list of list of Rule): a list of rules to apply to the component
         row_3_3(AoTNode): the answer AoT
     Returns:
-        ret(list of list): [component_idx, attr, available_times, constraints, attr_uni]
+        ret(list of list): [component_idx, attr, available_times, constraints, attr_uni], the attr_uni is newly added compared to the original RAVEN.
     """
     ret = []
     for i in range(len(rule_groups)):
@@ -51,7 +51,7 @@ def sample_attr_avail(rule_groups, row_3_3):
                 if k + 1 != num:
                     num_times += comb(most_num, k + 1)
             if num_times > 0:
-                ret.append([i, "Number", num_times, min_level, max_level, None])
+                ret.append([i, "Number", num_times, min_level, max_level, None])  # attr_uni added
         # Constant or on Position
         else:
             num_times = 0
@@ -61,11 +61,11 @@ def sample_attr_avail(rule_groups, row_3_3):
                 if k + 1 != num:
                     num_times += comb(most_num, k + 1)
             if num_times > 0:
-                ret.append([i, "Number", num_times, min_level, max_level, None])
+                ret.append([i, "Number", num_times, min_level, max_level, None])  # attr_uni added
             pos_times = comb(most_num, row_3_3_layout.number.get_value())
             pos_times -= 1
             if pos_times > 0:
-                ret.append([i, "Position", pos_times, None, None, None])
+                ret.append([i, "Position", pos_times, None, None, None])  # attr_uni added
         # Type, Size, Color
         for j in range(1, len(rule_group)):
             rule = rule_group[j]
@@ -79,12 +79,12 @@ def sample_attr_avail(rule_groups, row_3_3):
                     times = max_level - min_level + 1
                     times = times - 1
                     if times > 0:
-                        ret.append([i, rule_attr, times, min_level, max_level, uni])
+                        ret.append([i, rule_attr, times, min_level, max_level, uni])  # attr_uni added
             else:
                 times = max_level - min_level + 1
                 times = times - 1
                 if times > 0:
-                    ret.append([i, rule_attr, times, min_level, max_level, True])
+                    ret.append([i, rule_attr, times, min_level, max_level, True])  # attr_uni added
     return ret
 
 
